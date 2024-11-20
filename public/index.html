@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Smacon</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body style="margin: 0;">
+
+    <div id="desktop" style="visibility: hidden;">
+        <div id="p5Canvas" style="visibility: hidden;">
+        </div>
+    </div>
+    <div id="div_sync_screen" style="display: none;">
+        <form action="" onsubmit="onsubmitButton_Join(); return false;" style="text-align: center; width: 100%;">
+            <input type="submit" value="PCと同期" />
+        </form>
+    </div>
+    <div id="div_top_screen" style="margin: 8px; display: none;">
+        <div id="smartphone" style="display:none;">
+            <div class="box1">◀</div>
+            <div class="box2">▶</div>
+        </div>
+    </div>
+
+    <!-- import the p5.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.js"></script>
+    <!-- import the p5 collision library -->
+    <script src="https://cdn.jsdelivr.net/gh/bmoren/p5.collide2D@0.6/p5.collide2d.min.js"></script>
+
+    <script>
+        var ua = navigator.userAgent;
+        if (ua.indexOf('iPhone') > 0 || ua.indexOf('iPod') > 0 || ua.indexOf('Android') > 0 && ua.indexOf('Mobile') > 0) {
+            //スマホ
+        } else if (ua.indexOf('iPad') > 0 || ua.indexOf('Android') > 0) {
+            //タブレット
+        } else {
+            //PC
+            appendScript("https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/addons/p5.sound.js");
+            appendScript("./driver.js");
+        }
+        function appendScript(URL) {
+            var el = document.createElement('script');
+            el.src = URL;
+            document.body.appendChild(el);
+        };
+    </script>
+    <!-- Script -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./client.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+</body>
+
+</html>
